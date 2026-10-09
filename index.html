@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 20th Birthday Sayang! 🎂💖</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        genz: {
+                            pink: '#FF6B9D',
+                            purple: '#A259FF',
+                            gold: '#FFD700',
+                            cyan: '#00F0FF',
+                            dark: '#0B0B14'
+                        }
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 5s infinite ease-in-out',
+                        'float': 'float 5s infinite ease-in-out',
+                        'float-delayed': 'float 6s infinite ease-in-out 2s',
+                        'bounce-subtle': 'bounceSubtle 2.5s infinite ease-in-out',
+                        'spin-slow': 'spin 10s linear infinite',
+                        'shimmer': 'shimmer 4s linear infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'pop-in': 'popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.3', transform: 'scale(1) rotate(0deg)' },
+                            '50%': { opacity: '0.7', transform: 'scale(1.15) rotate(10deg)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-14px) rotate(2deg)' }
+                        },
+                        bounceSubtle: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-8px)' }
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' }
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' }
+                        },
+                        popIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.5)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body {
+            background-color: #080811;
+            color: #F3F4F6;
+            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .glass-card {
+            background: rgba(23, 22, 38, 0.7);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+        }
+
+        .glass-card-bright {
+            background: rgba(255, 255, 255, 0.09);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, #FF6B9D 0%, #FFD700 30%, #00F0FF 60%, #A259FF 80%, #FF6B9D 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .slides-container {
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+        .slide-item {
+            scroll-snap-align: center;
+            flex-shrink: 0;
+        }
+
+        .glow-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(95px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 4s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen text-slate-100 selection:bg-pink-500 selection:text-white">
+
+    <!-- Lively Ambient Animated Background Effect -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="glow-blob w-[380px] h-[380px] sm:w-[550px] sm:h-[550px] bg-pink-600/35 top-[-10%] left-[-10%] animate-pulse-glow"></div>
+        <div class="glow-blob w-[320px] h-[320px] sm:w-[480px] sm:h-[480px] bg-purple-600/35 bottom-[-10%] right-[-10%] animate-pulse-glow" style="animation-delay: 2s;"></div>
+        <div class="glow-blob w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] bg-amber-500/25 top-[35%] left-[25%] animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+        <div class="glow-blob w-[250px] h-[250px] bg-cyan-500/20 bottom-[20%] left-[5%] animate-pulse-glow" style="animation-delay: 3s;"></div>
+
+        <div class="particle w-2 h-2 bg-pink-400 top-[15%] left-[20%] animate-float"></div>
+        <div class="particle w-3 h-3 bg-amber-300 top-[25%] right-[15%] animate-float-delayed"></div>
+        <div class="particle w-2 h-2 bg-cyan-300 bottom-[30%] left-[10%] animate-float"></div>
+        <div class="particle w-3 h-3 bg-purple-400 bottom-[20%] right-[25%] animate-float-delayed"></div>
+    </div>
+
+    <!-- Background Music Audio Element -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support audio elements.
+    </audio>
+
+    <!-- Top Fixed Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 px-4 py-3 sm:px-8 flex items-center justify-between pointer-events-none">
+        <div class="pointer-events-auto flex items-center gap-2 glass-card px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide border border-white/20 shadow-lg backdrop-blur-md">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping"></span>
+            <span class="bg-gradient-to-r from-amber-200 via-yellow-300 to-pink-300 bg-clip-text text-transparent font-extrabold tracking-wider">10 OKTOBER 🎉</span>
+        </div>
+
+        <div class="pointer-events-auto flex items-center gap-2">
+            <button id="musicToggleBtn" onclick="toggleMusic()" class="glass-card hover:bg-white/20 text-white p-2.5 rounded-full transition-all duration-300 active:scale-95 border border-pink-500/40 flex items-center gap-2 px-3.5 shadow-lg">
+                <i id="musicIcon" data-lucide="disc" class="w-5 h-5 text-pink-400 animate-spin-slow"></i>
+                <span id="musicText" class="text-xs font-medium hidden sm:inline">Play Sound</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Slide Indicators / Navigation Dots -->
+    <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 glass-card px-4 py-2 rounded-full border border-white/20 shadow-2xl">
+        <button onclick="goToSlide(0)" class="slide-dot w-2.5 h-2.5 rounded-full bg-pink-500 transition-all duration-300" id="dot-0" aria-label="Slide 1"></button>
+        <button onclick="goToSlide(1)" class="slide-dot w-2.5 h-2.5 rounded-full bg-white/30 transition-all duration-300" id="dot-1" aria-label="Slide 2"></button>
+        <button onclick="goToSlide(2)" class="slide-dot w-2.5 h-2.5 rounded-full bg-white/30 transition-all duration-300" id="dot-2" aria-label="Slide 3"></button>
+        <button onclick="goToSlide(3)" class="slide-dot w-2.5 h-2.5 rounded-full bg-white/30 transition-all duration-300" id="dot-3" aria-label="Slide 4"></button>
+    </div>
+
+    <!-- Main Fullscreen Horizontal Slides Container -->
+    <main id="slidesWrapper" class="slides-container flex w-full h-screen overflow-x-auto overflow-y-hidden no-scrollbar relative z-10">
+        
+        <!-- SLIDE 1: Welcome & Birthday Cover -->
+        <section id="slide-0" class="slide-item w-full h-full flex-none flex flex-col items-center justify-center p-6 text-center relative">
+            <div class="max-w-xl w-full glass-card p-8 sm:p-12 rounded-3xl relative overflow-hidden border border-white/20 shadow-2xl animate-float">
+                
+                <div class="absolute top-4 left-4 text-pink-400/40 animate-bounce-subtle"><i data-lucide="sparkles" class="w-6 h-6"></i></div>
+                <div class="absolute bottom-6 right-6 text-amber-300/40 animate-float-delayed"><i data-lucide="star" class="w-7 h-7"></i></div>
+
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs sm:text-sm font-semibold mb-6 shadow-inner">
+                    <i data-lucide="cake" class="w-4 h-4 text-amber-400 animate-wiggle"></i>
+                    <span>It's Your Special Birthday Day!</span>
+                </div>
+                
+                <h1 class="font-heading text-4xl sm:text-6xl font-extrabold leading-tight tracking-tight mb-4 text-white">
+                    Happy Birthday <br>
+                    <span class="shimmer-text">Cintakuu 💖</span>
+                </h1>
+                
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-8 max-w-md mx-auto">
+                    Cieee umurnya resmi nambah nih! Kepo ga sama ucapan dan surprise virtual khusus buat kamu? Yuk buka sekarang! 🎁✨
+                </p>
+
+                <button onclick="startJourney()" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-pink-500 via-purple-500 to-amber-500 hover:from-pink-600 hover:to-amber-600 text-white font-bold text-base sm:text-lg shadow-xl shadow-pink-500/30 transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center justify-center gap-3 mx-auto group">
+                    <span>Buka Ucapan 🎀</span>
+                    <i data-lucide="gift" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+                </button>
+            </div>
+            
+            <div class="absolute bottom-16 text-xs text-slate-400 animate-bounce-subtle flex items-center gap-1.5">
+                <span>Geser ke samping buat lanjut</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 text-pink-400"></i>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: Level 20 Unlocked & Target Positif -->
+        <section id="slide-1" class="slide-item w-full h-full flex-none flex flex-col items-center justify-center p-6 text-center relative">
+            <div class="max-w-2xl w-full glass-card p-6 sm:p-10 rounded-3xl border border-white/20 shadow-2xl my-auto relative">
+                
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-semibold mb-4">
+                    <i data-lucide="unlock" class="w-3.5 h-3.5 text-cyan-400"></i>
+                    <span>Milestone Level Reached</span>
+                </div>
+
+                <h2 class="font-heading text-3xl sm:text-5xl font-bold mb-2 text-white">
+                    Level <span class="bg-gradient-to-r from-amber-300 via-yellow-400 to-pink-400 bg-clip-text text-transparent text-5xl sm:text-7xl font-extrabold animate-pulse">20</span> Unlocked 🔓
+                </h2>
+                <p class="text-slate-400 text-xs sm:text-sm mb-8">Official memasuki usia kepala 2 sayangku! Waktunya upgrade ke versi yang makin keren ✨🎮</p>
+
+                <!-- Cards Catatan Umur 20 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div class="glass-card-bright p-5 rounded-2xl text-left border border-white/10 relative overflow-hidden group hover:border-pink-500/50 transition duration-300">
+                        <div class="absolute -right-4 -top-4 opacity-15 group-hover:opacity-30 transition"><i data-lucide="smile" class="w-20 h-20 text-pink-400"></i></div>
+                        <h4 class="font-bold text-pink-300 mb-2 flex items-center gap-2"><i data-lucide="heart-pulse" class="w-4 h-4"></i> Target Umur 20</h4>
+                        <p class="text-sm text-slate-200 leading-relaxed">Dikurangin nangisnya yaa, sama kurangin prengat-prengutnya wkwk. Kan udah masuk kepala dua sekarang! 😜</p>
+                    </div>
+
+                    <!-- KARTU BARU: SEIZE THE DAY -->
+                    <div class="glass-card-bright p-5 rounded-2xl text-left border border-white/10 relative overflow-hidden group hover:border-amber-500/50 transition duration-300">
+                        <div class="absolute -right-4 -top-4 opacity-15 group-hover:opacity-30 transition"><i data-lucide="flame" class="w-20 h-20 text-amber-400"></i></div>
+                        <h4 class="font-bold text-amber-300 mb-2 flex items-center gap-2"><i data-lucide="music" class="w-4 h-4"></i> Seize The Day! 🎸</h4>
+                        <p class="text-sm text-slate-200 leading-relaxed">Selamat bertambah usia! Semoga tahun ini penuh dengan peluang baru. Waktunya untuk <span class="text-amber-300 font-bold italic">seize the day</span> dan raih semua impianmu! ✨</p>
+                    </div>
+                </div>
+
+                <button onclick="goToSlide(2)" class="text-pink-400 hover:text-pink-300 text-xs sm:text-sm font-semibold flex items-center gap-1.5 mx-auto transition group">
+                    <span>Lanjut ke doa & surat tulus...</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: Deep Wishes, 1 Foto Teman Kerja & Ungkapan Tulus -->
+        <section id="slide-2" class="slide-item w-full h-full flex-none flex flex-col items-center justify-center p-4 sm:p-6 relative">
+            <div class="max-w-2xl w-full glass-card p-5 sm:p-8 rounded-3xl border border-white/20 shadow-2xl flex flex-col items-center max-h-[88vh] overflow-y-auto no-scrollbar relative space-y-5">
+                
+                <div class="text-center">
+                    <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-pink-500/20 border border-pink-500/40 text-pink-300 text-xs font-semibold mb-2">
+                        <i data-lucide="heart" class="w-3.5 h-3.5 text-pink-400 fill-pink-400"></i>
+                        <span>A Letter From My Heart</span>
+                    </div>
+                    <h3 class="font-heading text-2xl sm:text-3xl font-bold text-white">Doa & Ucapan Buat Kamu 💌✨</h3>
+                </div>
+
+                <!-- SINGLE PHOTO FRAME: foto.jpg (Bareng Teman-Teman Kerja) -->
+                <div class="w-full max-w-sm mx-auto">
+                    <div class="glass-card p-3 rounded-2xl border border-white/20 shadow-xl transform -rotate-1 hover:rotate-0 transition duration-500 group relative overflow-hidden">
+                        
+                        <div class="aspect-[4/3] rounded-xl overflow-hidden bg-slate-800 border border-white/10 relative">
+                            <img src="foto.jpg" alt="Momen Ultah Bareng Teman Kerja" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1530103862676-de8892bb6bf4?auto=format&fit=crop&w=600&q=80'">
+                            
+                            <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] text-pink-300 font-bold border border-pink-500/30 flex items-center gap-1">
+                                <i data-lucide="briefcase" class="w-3 h-3 text-cyan-400"></i>
+                                <span>Work Besties Celebration ✨</span>
+                            </div>
+                        </div>
+
+                        <!-- CAPTION REVISI: Khusus Teman-Teman Kerja -->
+                        <p class="text-[11px] text-slate-300 font-medium text-center mt-2.5 italic">
+                            "Seneng banget liat kamu tersenyum bahagia dirayain bareng temen-temen kerja kamu! 🥳💖"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Main Highlighted Wish Box -->
+                <div class="glass-card p-5 sm:p-6 rounded-2xl border-2 border-pink-500/40 bg-gradient-to-br from-pink-950/40 via-purple-950/30 to-slate-900/60 shadow-xl w-full text-left space-y-3">
+                    <p class="text-xs uppercase tracking-widest text-amber-300 font-bold flex items-center gap-1.5">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
+                        Doa Tulusku Untukmu:
+                    </p>
+                    
+                    <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                        Sayang, di umur kamu yang udah masuk 20 tahun ini, doa aku buat kamu...
+                        <br><br>
+                        Semoga kedepannya kamu <span class="text-pink-400 font-bold">semakin dewasa lagi</span>, makin bahagia, dan dikelilingi hal-hal baik. Dipermudah semua kerjaan kamu, dan dilancarkan segala urusan kamu. Semoga kamu <span class="text-amber-300 font-bold">selalu dipersehat badannya</span> dan dijauhkan dari segala sakit.
+                        <br><br>
+                        Semoga senyuman manis kamu tetap jadi alasan terbaik aku buat terus semangat setiap hari. Sukses dan bersinar terus yaa cantik!
+                    </p>
+
+                    <!-- Modest Note About Gifts -->
+                    <div class="pt-3 border-t border-white/15">
+                        <p class="text-xs sm:text-sm text-slate-300 italic leading-relaxed bg-white/5 p-3 rounded-xl border border-white/10">
+                            "Maaf ya sayang, untuk sekarang aku baru bisa ngasih ucapan dan bikinin website sederhana ini, belum bisa kasih hadiah langsung buat kamu... Tapi doa dan cinta aku bakal selalu ada penuh buat kamu. Happy Level 20 Sayangku! 🥺❤️"
+                        </p>
+                    </div>
+                </div>
+
+                <div class="w-full flex justify-end pt-2">
+                    <button onclick="goToSlide(3)" class="px-5 py-2.5 rounded-xl bg-pink-500 hover:bg-pink-600 text-white text-xs font-bold transition flex items-center gap-2 shadow-lg shadow-pink-500/20">
+                        <span>Lanjut Tiup Lilin 🎂</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: Celebration (Blow Candle & Confetti) -->
+        <section id="slide-3" class="slide-item w-full h-full flex-none flex flex-col items-center justify-center p-6 text-center relative">
+            <div class="max-w-xl w-full glass-card p-8 sm:p-12 rounded-3xl border border-white/20 shadow-2xl my-auto relative overflow-hidden">
+                
+                <div class="absolute inset-0 bg-gradient-to-b from-amber-500/10 via-purple-500/5 to-transparent pointer-events-none"></div>
+
+                <div class="mb-6 flex justify-center relative">
+                    <div class="w-24 h-24 rounded-full bg-amber-500/20 border border-amber-400/40 flex items-center justify-center animate-bounce-subtle">
+                        <i data-lucide="cake" class="w-14 h-14 text-amber-400"></i>
+                    </div>
+                </div>
+
+                <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white mb-3">
+                    Make a Wish! 🌟
+                </h2>
+                
+                <p class="text-slate-300 text-sm sm:text-base mb-8 max-w-sm mx-auto leading-relaxed">
+                    Tutup mata sebentar, panjatkan doa terbaik buat diri kamu di umur 20 ini, lalu tekan tombol di bawah buat tiup lilin & rayakan! 🎉
+                </p>
+
+                <button onclick="triggerConfetti()" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-400 via-orange-500 to-pink-500 hover:opacity-95 text-white font-bold text-base sm:text-lg shadow-xl shadow-amber-500/30 transition transform hover:scale-105 active:scale-95 inline-flex items-center justify-center gap-3">
+                    <i data-lucide="party-popper" class="w-6 h-6 animate-wiggle"></i>
+                    <span>Rayakan & Tiup Lilin! 🥳</span>
+                </button>
+
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <h4 class="font-heading text-lg sm:text-xl font-bold bg-gradient-to-r from-pink-400 to-purple-300 bg-clip-text text-transparent">
+                        I Always Love You Sayang! ❤️
+                    </h4>
+                    <p class="text-xs text-slate-400 mt-1 font-semibold tracking-wider">
+                        Happy 20th Birthday Cintakuu ✨
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- KOREAN FINGER HEART (🫰) OVERLAY POPUP -->
+    <div id="fingerHeartOverlay" onclick="closeOverlay()" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md hidden opacity-0 transition-all duration-500 cursor-pointer">
+        <div class="glass-card p-8 sm:p-10 rounded-3xl border-2 border-pink-500/60 text-center shadow-2xl flex flex-col items-center animate-pop-in max-w-xs sm:max-w-sm mx-4 relative">
+            
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-tr from-pink-500/30 to-purple-500/30 border-2 border-pink-400 flex items-center justify-center text-6xl sm:text-7xl shadow-2xl mb-4 animate-bounce">
+                🫰
+            </div>
+
+            <h3 class="font-heading text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-pink-400 via-purple-300 to-amber-300 bg-clip-text text-transparent mb-2">
+                I Love You So Much! ❤️
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed">
+                Semoga semua impian dan doamu di umur 20 ini terkabul ya sayang! ✨🫰
+            </p>
+            <span class="text-[10px] text-slate-400 mt-4 tracking-wider uppercase font-semibold">(Sentuh di mana saja untuk tutup)</span>
+        </div>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 4;
+        let isMusicPlaying = false;
+        let overlayTimer = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            setupSlideScrollListener();
+        });
+
+        function goToSlide(index) {
+            if (index < 0 || index >= totalSlides) return;
+            currentSlide = index;
+            const wrapper = document.getElementById('slidesWrapper');
+            const targetSlide = document.getElementById(`slide-${index}`);
+            
+            if (wrapper && targetSlide) {
+                wrapper.scrollTo({
+                    left: targetSlide.offsetLeft,
+                    behavior: 'smooth'
+                });
+            }
+            updatePaginationDots(index);
+        }
+
+        function updatePaginationDots(activeIndex) {
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if (dot) {
+                    if (i === activeIndex) {
+                        dot.classList.remove('bg-white/30', 'w-2.5');
+                        dot.classList.add('bg-pink-500', 'w-6');
+                    } else {
+                        dot.classList.remove('bg-pink-500', 'w-6');
+                        dot.classList.add('bg-white/30', 'w-2.5');
+                    }
+                }
+            }
+        }
+
+        function setupSlideScrollListener() {
+            const wrapper = document.getElementById('slidesWrapper');
+            if (!wrapper) return;
+
+            let isScrolling;
+            wrapper.addEventListener('scroll', () => {
+                clearTimeout(isScrolling);
+                isScrolling = setTimeout(() => {
+                    const width = wrapper.clientWidth;
+                    const scrollLeft = wrapper.scrollLeft;
+                    const index = Math.round(scrollLeft / width);
+                    if (index !== currentSlide && index >= 0 && index < totalSlides) {
+                        currentSlide = index;
+                        updatePaginationDots(index);
+                    }
+                }, 100);
+            });
+        }
+
+        function startJourney() {
+            const audio = document.getElementById('bgMusic');
+            if (audio && !isMusicPlaying) {
+                audio.play().then(() => {
+                    isMusicPlaying = true;
+                    updateMusicUI(true);
+                }).catch(e => console.log(e));
+            }
+            goToSlide(1);
+        }
+
+        function toggleMusic() {
+            const audio = document.getElementById('bgMusic');
+            if (!audio) return;
+
+            if (isMusicPlaying) {
+                audio.pause();
+                isMusicPlaying = false;
+                updateMusicUI(false);
+            } else {
+                audio.play().then(() => {
+                    isMusicPlaying = true;
+                    updateMusicUI(true);
+                }).catch(err => alert("Gagal memutar music.mp3. Pastikan file music.mp3 sudah ada di folder!"));
+            }
+        }
+
+        function updateMusicUI(playing) {
+            const icon = document.getElementById('musicIcon');
+            const text = document.getElementById('musicText');
+
+            if (playing) {
+                if (icon) icon.classList.add('animate-spin-slow');
+                if (text) text.innerText = 'Music Playing';
+            } else {
+                if (icon) icon.classList.remove('animate-spin-slow');
+                if (text) text.innerText = 'Play Music';
+            }
+        }
+
+        // TRIGGER CONFETTI + POPUP JARI LOVE (DURASI 8 DETIK)
+        function triggerConfetti() {
+            const overlay = document.getElementById('fingerHeartOverlay');
+            if (overlay) {
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                
+                if (overlayTimer) clearTimeout(overlayTimer);
+                overlayTimer = setTimeout(() => {
+                    closeOverlay();
+                }, 8000);
+            }
+
+            if (typeof confetti === 'function') {
+                const duration = 4000;
+                const end = Date.now() + duration;
+
+                (function frame() {
+                    confetti({
+                        particleCount: 7,
+                        angle: 60,
+                        spread: 60,
+                        origin: { x: 0 },
+                        colors: ['#FF6B9D', '#FFD700', '#A259FF', '#00F0FF']
+                    });
+                    confetti({
+                        particleCount: 7,
+                        angle: 120,
+                        spread: 60,
+                        origin: { x: 1 },
+                        colors: ['#FF6B9D', '#FFD700', '#A259FF', '#00F0FF']
+                    });
+
+                    if (Date.now() < end) {
+                        requestAnimationFrame(frame);
+                    }
+                }());
+            }
+        }
+
+        function closeOverlay() {
+            const overlay = document.getElementById('fingerHeartOverlay');
+            if (overlay && !overlay.classList.contains('hidden')) {
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 500);
+            }
+        }
+    </script>
+</body>
+</html>
